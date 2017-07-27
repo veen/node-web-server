@@ -3,6 +3,8 @@ const app = express()
 const hbs = require('hbs')
 const fs = require('fs')
 
+const port = process.env.PORT || 3000
+
 // tell Handlebars where the directory of included files is
 hbs.registerPartials(__dirname + '/views/partials')
 
@@ -23,9 +25,9 @@ app.use((req, res, next) => {
 })
 
 
-app.use((req, res, next) => {
-  res.render('maintenance.hbs')
-})
+// app.use((req, res, next) => {
+//   res.render('maintenance.hbs')
+// })
 
 // functions for Handlebars that can be called in the templates
 hbs.registerHelper('getCurrentYear', () => new Date().getFullYear())
@@ -47,4 +49,4 @@ app.get('/about', (req, res) =>
 )
 
 // get the Express server going
-app.listen(3000, () => console.log('Listening on port 3000...'))
+app.listen(port, () => console.log(`Listening on port ${port}...`))
